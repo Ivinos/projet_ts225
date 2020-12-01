@@ -38,7 +38,9 @@ for i=1:length(profil)
 end
 size(code)
 plot(profil);
-imshow(uint8(code));
+figure, hist(profil,255);
+figure,
+imshow(graythresh(uint8(code));
 ylim([0 255]);
 
 
