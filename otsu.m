@@ -1,8 +1,8 @@
 function thresh=otsu(Image)
-    %Image = imread('../code_barre.png');
+    imshow(uint8(Image));
     [Colonne Ligne] = size(Image);
     NBTotal = Colonne*Ligne;
-    img_hist = imhist(Image)';
+    img_hist = imhist(uint8(Image))';
     Proba= img_hist/NBTotal;
     for i = 1 : 255    
         proba1 = Proba(1:i);
@@ -17,6 +17,6 @@ function thresh=otsu(Image)
         variance2 = sum(((n2-moyenne2).^2).*proba2);
         Var_Intra_Classe(i) = variance1 + variance2;
     end
-    [Val,Indice] = min(Var_Intra_Classe); 
+    [Val,Indice] = min(Var_Intra_Classe(1:255));
     thresh = (Indice-1)/255
 end
