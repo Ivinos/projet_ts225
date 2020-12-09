@@ -4,8 +4,8 @@ clc;
 %% ZEBARTI
 
 img = double(imread('../code_barre_parfait.png'));
-size(img)
-img_bw = (img(:,:,1) + img(:,:,2) + img(:,:,3))/3;
+[width height]=size(img)
+img_bw = (img(:,:,1) + img(:,:,2) + img(:,:,3))/4 +10;
 
 imshow(uint8(img_bw))
 
@@ -31,12 +31,20 @@ end
 
 seuil=otsu(img_bw);
 n1=1;
-while profil(n1)>seuil*255
+while (profil(n1)>seuil*256)
    n1=n1+1;
+   if n1==length(profil)
+      n1=1; 
+      break;
+   end
 end
 n2=length(profil);
-while profil(n2)>seuil*255
+while (profil(n2)>seuil*256)
     n2=n2-1;
+    if n2==1
+       n2=length(profil);
+       break;
+    end
 end
 figure,
 subplot(2,3,5),plot(profil);
@@ -51,7 +59,7 @@ for i=1:length(profil)
     end
 end
 histo=hist(profil,256);
-max(histo)
+max(histo);
 subplot(2,3,1),imshow(uint8(img_bw));
 title('Image originale');
 hold on,
@@ -69,5 +77,3 @@ title('Code-barre recompose');
 ylim([0 255]);
 subplot(2,3,6),imshow(imbinarize(img_bw,255*seuil));
 title('Image binarisee');
-
-
