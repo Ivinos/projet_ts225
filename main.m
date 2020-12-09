@@ -40,6 +40,7 @@ while profil(n2)>seuil*255
 end
 figure,
 subplot(2,3,5),plot(profil);
+title('Profil tronque');
 profil=profil(n1:n2);
 code=[];
 for i=1:length(profil)
@@ -49,15 +50,24 @@ for i=1:length(profil)
         code=[code ones(500,1)];
     end
 end
-
-subplot(2,2,1),imshow(imbinarize(img_bw,255*seuil));
+histo=hist(profil,256);
+max(histo)
+subplot(2,3,1),imshow(uint8(img_bw));
+title('Image originale');
 hold on,
 plot(X,Y);
 hold off;
 subplot(2,3,2),plot(profil);
-subplot(2,3,3), hist(profil,100);
+title('Profil brut');
+subplot(2,3,3),hist(profil,256);
+title('Histogramme avec seuil');
+hold on;
+plot([seuil*256 seuil*256],[1,max(histo)]);
+hold off;
 subplot(2,3,4),imshow(uint8(code));
-
+title('Code-barre recompose');
 ylim([0 255]);
+subplot(2,3,6),imshow(imbinarize(img_bw,255*seuil));
+title('Image binarisee');
 
 
