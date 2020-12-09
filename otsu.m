@@ -1,5 +1,5 @@
 function thresh=otsu(Image)
-    Image = imread('../code_barre.png');
+    %Image = imread('../code_barre.png');
     [Colonne Ligne] = size(Image);
     NBTotal = Colonne*Ligne;
     img_hist = imhist(Image)';

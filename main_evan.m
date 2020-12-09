@@ -4,11 +4,11 @@ clc;
 
 %% ZEBARTI
 
-img = double(imread('code_barre_ref.png'));
+img = double(imread('code_barre.png'));
 
 img_bw = (img(:,:,1) + img(:,:,2) + img(:,:,3))/3;
 
-imshow(uint8(img_bw))
+figure('name', 'image de base en noir et blanc'), imshow(uint8(img_bw));
 
 [X, Y] = ginput(2);
 
@@ -30,7 +30,7 @@ for i=1:length(M)
     profil(i) = img_bw(M(i,2), M(i,1));
 end
 
-figure, plot(profil)
+%figure('Name', 'z'), plot(profil);
 
 % Un histo établit des intervalles de valeurs
 N = 256;
@@ -64,15 +64,15 @@ index_derniere_val = index_zeros(end);
 
 disp(M(index_derniere_val, 1))
 
-X_ = [M(index_premiere_val, 1), M(index_derniere_val, 1)];
-Y_ = [M(index_premiere_val, 2), M(index_derniere_val, 2)];
+X_ = [M(index_premiere_val, 1)+2, M(index_derniere_val, 1)]; % !!!!!! le "+2" est un test mais wola c'est ça
+Y_ = [M(index_premiere_val, 2)-2, M(index_derniere_val, 2)]; % !!!!! pareil le -2 est douteux mais c'est pour centrer
 
 %% Extraction de la deuxième signature
 
 L = 95; % Points à extraire
 
 M = zeros(L, 2);
-u = 1:L;
+u = 0:L-1;
 
 M(:, 1) = floor(X_(1) + (u/(L-1))*(X_(2) - X_(1)));
 M(:, 2) = floor(Y_(1) + (u/(L-1))*(Y_(2) - Y_(1)));
@@ -82,7 +82,7 @@ for i=1:length(M)
     profil2(i) = img_bw(M(i,2), M(i,1));
 end
 
-figure, plot(profil2)
+%figure('Name', 't'), plot(profil2);
 
 % On réutilise le même seuil
 profil_binarise2(profil2 > index_max) = 1;
@@ -96,5 +96,22 @@ end
 
 img_verif = imresize(img_verif, 3);
 
-figure, imshow(img_verif);
+figure('Name', 'Résultat (WIP)'), imshow(img_verif);
+
+figure;
+imshow(uint8(img_bw));
+hold on;
+scatter(M(:,1), M(:,2));
+hold off;
+
+
+%% Décodage
+
+Ele_A = [1 1 1 0 0 1 0; 1 1 0 0 1 1 0; 1 1 0 1 1 0 0; 1 0 0 0 0 1 0; 1 0 1 1 1 0 0; 1 0 0 1 1 1 0; 1 0 1 0 0 0 0; 1 0 0 0 1 0 0; 1 0 0 1 0 0 0; 1 1 1 0 1 0 0];
+Ele_B = [1 0 1 1 0 0 0; 1 0 0 1 1 0 0; 1 1 0 0 1 0 0; 1 0 1 1 1 1 0; 1 1 0 0 0 1 0; 1 0 0 0 1 1 0; 1 1 1 1 0 1 0; 1 1 0 1 1 1 0; 1 1 1 0 1 1 0; 1 1 0 1 0 0 0];
+Ele_C = [0 0 0 1 1 0 1; 0 0 1 1 0 0 1; 0 0 1 0 0 1 1; 0 1 1 1 1 0 1; 0 1 0 0 0 1 1; 0 1 1 0 0 0 1; 0 1 0 1 1 1 1; 0 1 1 1 0 1 1; 0 1 1 0 1 1 1; 0 0 0 1 0 1 1];
+
+
+
+
 

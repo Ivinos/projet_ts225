@@ -3,13 +3,13 @@ close all;
 clc;
 %% ZEBARTI
 
-img = double(imread('../code_barre_parfait.png'));
+img = double(imread('code_barre_ref.png'));
 size(img)
 img_bw = (img(:,:,1) + img(:,:,2) + img(:,:,3))/3;
 
 imshow(uint8(img_bw))
 
-[X, Y] = ginput(2)
+[X, Y] = ginput(2);
 %X=[90 460];
 %Y=[145 130];
 segment_len = sqrt((X(1) - X(2))^2 + (Y(1) - Y(2))^2); % Distance en pixel
