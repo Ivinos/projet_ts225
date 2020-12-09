@@ -1,7 +1,6 @@
 clear;
 close all;
 clc;
-
 %% ZEBARTI
 
 img = double(imread('../code_barre.png'));
@@ -30,7 +29,7 @@ for i=1:length(M)
 
 end
 
-seuil=graythresh(uint8(profil))
+seuil=otsu(img_bw);
 n1=1;
 while profil(n1)>seuil*255
    n1=n1+1;
@@ -50,6 +49,7 @@ for i=1:length(profil)
         code=[code ones(500,1)];
     end
 end
+
 subplot(2,2,1),imshow(imbinarize(img_bw,255*seuil));
 hold on,
 plot(X,Y);
