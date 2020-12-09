@@ -5,7 +5,7 @@ clc;
 
 img = double(imread('../code_barre_parfait.png'));
 [width height]=size(img)
-img_bw = (img(:,:,1) + img(:,:,2) + img(:,:,3))/4 +10;
+img_bw = (img(:,:,1) + img(:,:,2) + img(:,:,3))/3;
 
 imshow(uint8(img_bw))
 
