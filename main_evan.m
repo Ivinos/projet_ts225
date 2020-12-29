@@ -4,8 +4,9 @@ clc;
 
 %% ZEBARTI
 
-img = double(imread('code_barre_ref.png'));
+img = double(imread('code_barre_livre.jpg'));
 
+%img_bw = img; % Si l'image est déjà en noir et blanc
 img_bw = (img(:,:,1) + img(:,:,2) + img(:,:,3))/3;
 
 figure('name', 'image de base en noir et blanc'), imshow(uint8(img_bw));
