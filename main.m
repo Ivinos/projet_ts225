@@ -4,7 +4,7 @@ clc;
 %% ZEBARTI
 
 
-img = double(imread('code_barre.jpg'));
+img = double(imread('code_barre_vache.jpg'));
 [width height]=size(img);
 
 img_bw = (img(:,:,1) + img(:,:,2) + img(:,:,3))/3;
@@ -48,7 +48,10 @@ while (profil(n2)>seuil*256)
        break;
     end
 end
-region(img_bw,3,3);
+D_bin=region(img_bw,2,14)>0.99;
+figure,
+image_bin=D_bin.*img_bw
+imshow(uint8(image_bin));
 % figure,
 % subplot(2,3,5),plot(profil);
 % title('Profil tronque');
