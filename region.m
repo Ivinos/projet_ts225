@@ -14,13 +14,5 @@ function D=region(img, sigma_g, sigma_t)
     Tyy=conv2(grady_norm.^2, passe_bas,'same');
     Txy=conv2(grady_norm.*gradx_norm, passe_bas, 'same');
     D=sqrt((Txx-Tyy).^2 + 4*Txy.^2)./(Txx+Tyy);
-    seuil_binarisation = max(max(D))*0.99
-    Dbin= D>seuil_binarisation;
-    Dbin(1,1)
-    figure,
-    imshow(Dbin)
-    
-
-
 end
 

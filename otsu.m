@@ -1,5 +1,5 @@
 function thresh=otsu(Image)
-    imshow(uint8(Image));
+    %imshow(uint8(Image));
     [Colonne Ligne] = size(Image);
     NBTotal = Colonne*Ligne;
     img_hist = imhist(uint8(Image))';
