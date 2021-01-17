@@ -4,12 +4,12 @@ clc;
 %% ZEBARTI
 
 
-img = double(imread('code_barre_vache.jpg'));
+img = double(imread('code_barre_jus.jpg'));
 [width height]=size(img);
 
 img_bw = (img(:,:,1) + img(:,:,2) + img(:,:,3))/3;
 
-%imshow(uint8(img_bw))
+imshow(uint8(img_bw))
 
 %[X, Y] = ginput(2);
 
@@ -23,7 +23,6 @@ image_bin=Dbin.*img_bw;
 Dlabel=label(Dbin);
 [X Y]=orientation_forme(Dlabel);
 
-
 segment_len = sqrt((X(1) - X(2))^2 + (Y(1) - Y(2))^2); % Distance en pixel
 
 U = floor(2*segment_len);
@@ -31,18 +30,15 @@ U = floor(2*segment_len);
 M = zeros(U, 2);
 u = 1:U;
 
-
-
+X
+Y
 M(:, 1) = floor(X(1) + (u/(U-1))*(X(2) - X(1)));
 M(:, 2) = floor(Y(1) + (u/(U-1))*(Y(2) - Y(1)));
-
 for i=1:length(M)
-   
    profil(i)=img_bw(M(i,2),M(i,1)); 
 end
 
-
-
-
 profil_tronque=troncage_profil(profil,seuil);
+profil_binarise=profil_tronque>seuil*255
 affichage_profil(img_bw,profil,profil_tronque,seuil,Dlabel,X,Y);
+traduction_code(profil_binarise)

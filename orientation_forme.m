@@ -36,7 +36,7 @@ function [x1 y1]=orientation_forme(Dlabel)
      [val_p vect_p]=eig(T);
      incr_x=vect_p(1,1)/max(max(vect_p))
      incr_y=vect_p(2,2)/max(max(vect_p))
-     %figure,imshow(1-Dlabel);
+     figure,imshow(1-Dlabel);
      axis on;
      hold on
      plot(moy_y,moy_x, 'r+', 'MarkerSize', 30, 'LineWidth', 2);
@@ -51,16 +51,19 @@ function [x1 y1]=orientation_forme(Dlabel)
          if i1<1||j1<1
              i1=round(max(1,i1));
              j1=round(max(1,j1));
-             'coucou'
             break; 
          end
      end
       while Dlabel(round(i2),round(j2))~=0
          i2=i2+incr_x;
          j2=j2+incr_y;
+         if i2>taille(1)||j2>taille(2)
+             i2=round(min(i2,taille(1)));
+             j2=round(min(j2,taille(2)));
+             break;
      end
      plot(j1,i1, 'r+', 'MarkerSize', 30, 'LineWidth', 2);
-     plot(j2,i2, 'r+', 'MarkerSize', 30, 'LineWidth', 2);
-     x1=[i1 j1];
-     y1=[i2 j2];
+     %plot(j2,i2, 'g+', 'MarkerSize', 30, 'LineWidth', 2);
+     x1=[j1 j2];
+     y1=[i1 i2];
 end

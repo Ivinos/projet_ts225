@@ -15,15 +15,15 @@ function profil_tronque=troncage_profil(profil,seuil)
            break;
         end
     end
-    profil_tronque=[];
-    for i=1:length(profil)
-        if profil(i)>seuil*255
-            profil_tronque=[profil_tronque 255*ones(500,1)];
-        else
-            profil_tronque=[profil_tronque ones(500,1)];
-        end
-    end
-    figure,plot(profil_tronque);
-    n1
-    n2
+    profil_tronque=profil(n1:n2);
+%     for i=1:length(profil)
+%         if profil(i)>seuil*255
+%             profil_tronque=[profil_tronque 255];
+%         else
+%             profil_tronque=[profil_tronque 1];
+%         end
+%     end
+    %figure,plot(profil_tronque)
+    size(profil_tronque)
+    size(profil)
 end
