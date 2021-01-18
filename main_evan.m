@@ -65,12 +65,12 @@ index_derniere_val = index_zeros(end);
 
 disp(M(index_derniere_val, 1))
 
-X_ = [M(index_premiere_val, 1)+2, M(index_derniere_val, 1)]; % !!!!!! le "+2" est un test mais wola c'est Ã§a
+X_ = [M(index_premiere_val, 1)+2, M(index_derniere_val, 1)]; % !!!!!! le "+2" est un test mais wola c'est ça
 Y_ = [M(index_premiere_val, 2)-2, M(index_derniere_val, 2)]; % !!!!! pareil le -2 est douteux mais c'est pour centrer
 
-%% Extraction de la deuxiÃ¨me signature
+%% Extraction de la deuxième signature
 
-L = 95; % Points Ã  extraire
+L = 95; % Points à extraire
 
 M = zeros(L, 2);
 u = 0:L-1;
@@ -85,7 +85,7 @@ end
 
 %figure('Name', 't'), plot(profil2);
 
-% On rÃ©utilise le mÃªme seuil
+% On réutilise le même seuil
 profil_binarise2(profil2 > index_max) = 1;
 profil_binarise2(profil2 <= index_max) = 0;
 
@@ -97,7 +97,7 @@ end
 
 img_verif = imresize(img_verif, 3);
 
-figure('Name', 'RÃ©sultat (WIP)'), imshow(img_verif);
+figure('Name', 'Résultat (WIP)'), imshow(img_verif);
 
 figure;
 imshow(uint8(img_bw));
@@ -106,7 +106,7 @@ scatter(M(:,1), M(:,2));
 hold off;
 
 
-%% DÃ©codage
+%% Décodage
 
 Ele_A = [1 1 1 0 0 1 0; 1 1 0 0 1 1 0; 1 1 0 1 1 0 0; 1 0 0 0 0 1 0; 1 0 1 1 1 0 0; 1 0 0 1 1 1 0; 1 0 1 0 0 0 0; 1 0 0 0 1 0 0; 1 0 0 1 0 0 0; 1 1 1 0 1 0 0];
 Ele_B = [1 0 1 1 0 0 0; 1 0 0 1 1 0 0; 1 1 0 0 1 0 0; 1 0 1 1 1 1 0; 1 1 0 0 0 1 0; 1 0 0 0 1 1 0; 1 1 1 1 0 1 0; 1 1 0 1 1 1 0; 1 1 1 0 1 1 0; 1 1 0 1 0 0 0];
