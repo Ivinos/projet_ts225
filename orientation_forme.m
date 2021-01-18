@@ -2,7 +2,7 @@ function [x1, y1]=orientation_forme(Dlabel)
     mode(mode(Dlabel))
     liste=Dlabel(:);
     Dlabel=(Dlabel==mode(mode(nonzeros(liste))));
-    %figure,imshow(Dlabel);
+    figure,imshow(Dlabel);
     taille=size(Dlabel);
     moy_x=0;
     moy_y=0;
@@ -47,7 +47,7 @@ function [x1, y1]=orientation_forme(Dlabel)
      j2=moy_y;
      while Dlabel(round(i1),round(j1))~=0
          i1=i1-incr_x;
-         j1=j1-incr_y;
+         j1=j1+incr_y;
          if i1<1||j1<1
              i1=round(max(1,i1));
              j1=round(max(1,j1));
@@ -56,7 +56,7 @@ function [x1, y1]=orientation_forme(Dlabel)
      end
       while Dlabel(round(i2),round(j2))~=0
          i2=i2+incr_x;
-         j2=j2+incr_y;
+         j2=j2-incr_y;
          if i2>taille(1)||j2>taille(2)
              i2=round(min(i2,taille(1)));
              j2=round(min(j2,taille(2)));
