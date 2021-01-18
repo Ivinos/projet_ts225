@@ -4,7 +4,7 @@ clc;
 %% ZEBARTI
 
 
-img = double(imread('code_barre_jus.jpg'));
+img = double(imread('code_barre_jus2.png'));
 [width, height]=size(img);
 
 img_bw = (img(:,:,1) + img(:,:,2) + img(:,:,3))/3;
