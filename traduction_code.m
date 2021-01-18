@@ -75,7 +75,7 @@ function traduction_code(profil_binarise)
        end
     end
 
-    res
+    res;
 
 
 

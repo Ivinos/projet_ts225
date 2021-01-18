@@ -4,7 +4,7 @@ clc;
 %% ZEBARTI
 
 
-img = double(imread('code_barre_jus.jpg'));
+img = double(imread('code_barre_jus3.jpg'));
 [width height]=size(img);
 
 img_bw = (img(:,:,1) + img(:,:,2) + img(:,:,3))/3;
@@ -39,6 +39,6 @@ for i=1:length(M)
 end
 
 profil_tronque=troncage_profil(profil,seuil);
-profil_binarise=profil_tronque>seuil*255
+profil_binarise=profil_tronque>seuil*255;
 affichage_profil(img_bw,profil,profil_tronque,seuil,Dlabel,X,Y);
 traduction_code(profil_binarise)
