@@ -1,4 +1,4 @@
-function [x1 y1]=orientation_forme(Dlabel)
+function [x1, y1]=orientation_forme(Dlabel)
     mode(mode(Dlabel))
     liste=Dlabel(:);
     Dlabel=(Dlabel==mode(mode(nonzeros(liste))));
@@ -33,7 +33,7 @@ function [x1 y1]=orientation_forme(Dlabel)
        end
     end
      T=[somme_xx somme_xy;somme_xy somme_yy]
-     [val_p vect_p]=eig(T);
+     [val_p, vect_p]=eig(T);
      incr_x=vect_p(1,1)/max(max(vect_p))
      incr_y=vect_p(2,2)/max(max(vect_p))
      figure,imshow(1-Dlabel);

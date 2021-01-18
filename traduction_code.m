@@ -1,5 +1,7 @@
 function traduction_code(profil_binarise)
-        %% DÃ©codage
+        
+
+    % Codes EAN
 
     Ele_A = [1 1 1 0 0 1 0; 1 1 0 0 1 1 0; 1 1 0 1 1 0 0; 1 0 0 0 0 1 0; 1 0 1 1 1 0 0; 1 0 0 1 1 1 0; 1 0 1 0 0 0 0; 1 0 0 0 1 0 0; 1 0 0 1 0 0 0; 1 1 1 0 1 0 0];
     Ele_B = [1 0 1 1 0 0 0; 1 0 0 1 1 0 0; 1 1 0 0 1 0 0; 1 0 1 1 1 1 0; 1 1 0 0 0 1 0; 1 0 0 0 1 1 0; 1 1 1 1 0 1 0; 1 1 0 1 1 1 0; 1 1 1 0 1 1 0; 1 1 0 1 0 0 0];
@@ -10,9 +12,9 @@ function traduction_code(profil_binarise)
     garde_normale = [0 1 0];
     garde_centrale = [1 0 1 0 1];
 
-    % CohÃ©rence avec les gardes
+    % Cohérence avec les gardes
 
-    bool = 1; % boolÃ©en de cohÃ©rence (si 1 c'est cohÃ©rent sinon pas non)
+    bool = 1; % booléen de cohérence (si 1 c'est cohérent sinon pas non)
 
     if ~(garde_normale == profil_binarise(1, (1:3)))
         bool = 0;
@@ -25,8 +27,10 @@ function traduction_code(profil_binarise)
     if ~(garde_normale == profil_binarise(1, (93:95)))
         bool = 0;
     end
+    
+    disp(bool); % Il faudrait rajouter un truc si c'est pas cohérent
 
-    % DÃ©codage
+    % Décodage
 
     res = zeros(1, 13);
     res_ele = zeros(1, 13); % Covention : 1 = A, 2 = B, 3 = C
@@ -34,7 +38,7 @@ function traduction_code(profil_binarise)
     for i=4:7:45
         for j=1:10
             if (Ele_A(j, :) == profil_binarise(1, (i:i+6)))
-                res(1, (i-4)/7 + 2) = j-1; % i-4 pour enelever les 3 val de la garde puis + 2 pour index matlab et dÃ©calage val
+                res(1, (i-4)/7 + 2) = j-1; % i-4 pour enelever les 3 val de la garde puis + 2 pour index matlab et décalage val
                 res_ele(1, (i-4)/7 + 2) = 1;
             end
 
@@ -53,7 +57,7 @@ function traduction_code(profil_binarise)
     for i=51:7:92
         for j=1:10
             if (Ele_A(j, :) == profil_binarise(1, (i:i+6)))
-                res(1, (i+5)/7) = j-1; % i+ la garde de 5 divisÃ© par 7
+                res(1, (i+5)/7) = j-1; % i+ la garde de 5 divisé par 7
                 res_ele(1, (i+5)/7) = 1;
             end
 
@@ -75,8 +79,6 @@ function traduction_code(profil_binarise)
        end
     end
 
-    res
-
-
+    disp(res)
 
 end
