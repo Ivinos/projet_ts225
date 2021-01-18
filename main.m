@@ -3,7 +3,7 @@ close all;
 clc;
 %% ZEBARTI
 
-img = double(imread('code_barre_jus.jpg'));
+img = double(imread('code_barre_jus2.png'));
 [width, height]=size(img);
 
 img_bw = (img(:,:,1) + img(:,:,2) + img(:,:,3))/3;
@@ -40,7 +40,7 @@ profil_tronque=troncage_profil(profil,seuil);
 profil_binarise=profil_tronque>seuil*255;
 affichage_profil(img_bw,profil,profil_tronque,seuil,Dlabel,X,Y);
 
-%% Extraction de la deuxi�me signature
+%% Extraction de la deuxieme signature
 
 index_zeros = find(~profil_binarise);
 index_premiere_val = index_zeros(1);
@@ -48,10 +48,10 @@ index_derniere_val = index_zeros(end);
 
 disp(M(index_derniere_val, 1))
 
-X_ = [M(index_premiere_val, 1)+2, M(index_derniere_val, 1)]; % !!!!!! le "+2" est un test mais wola c'est �a
+X_ = [M(index_premiere_val, 1)+2, M(index_derniere_val, 1)]; % !!!!!! le "+2" est un test mais wola c'est ca
 Y_ = [M(index_premiere_val, 2)-2, M(index_derniere_val, 2)]; % !!!!! pareil le -2 est douteux mais c'est pour centrer
 
-L = 95; % Points � extraire
+L = 95; % Points a extraire
 
 M = zeros(L, 2);
 u = 0:L-1;
@@ -66,7 +66,7 @@ end
 
 %figure('Name', 't'), plot(profil2);
 
-% On r�utilise le m�me seuil
+% On reutilise le meme seuil
 profil_binarise2(profil2 > seuil) = 1;
 profil_binarise2(profil2 <= seuil) = 0;
 
@@ -86,7 +86,7 @@ hold on;
 scatter(M(:,1), M(:,2));
 hold off;
 
-%% D�codage
+%% Decodage
 
 traduction_code(profil_binarise2)
 
