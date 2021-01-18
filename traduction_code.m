@@ -12,9 +12,9 @@ function traduction_code(profil_binarise)
     garde_normale = [0 1 0];
     garde_centrale = [1 0 1 0 1];
 
-    % Cohérence avec les gardes
+    % Cohï¿½rence avec les gardes
 
-    bool = 1; % booléen de cohérence (si 1 c'est cohérent sinon pas non)
+    bool = 1; % boolï¿½en de cohï¿½rence (si 1 c'est cohï¿½rent sinon pas non)
 
     if ~(garde_normale == profil_binarise(1, (1:3)))
         bool = 0;
@@ -28,9 +28,9 @@ function traduction_code(profil_binarise)
         bool = 0;
     end
     
-    disp(bool); % Il faudrait rajouter un truc si c'est pas cohérent
+    disp(bool); % Il faudrait rajouter un truc si c'est pas cohï¿½rent
 
-    % Décodage
+    % Dï¿½codage
 
     res = zeros(1, 13);
     res_ele = zeros(1, 13); % Covention : 1 = A, 2 = B, 3 = C
@@ -38,7 +38,7 @@ function traduction_code(profil_binarise)
     for i=4:7:45
         for j=1:10
             if (Ele_A(j, :) == profil_binarise(1, (i:i+6)))
-                res(1, (i-4)/7 + 2) = j-1; % i-4 pour enelever les 3 val de la garde puis + 2 pour index matlab et décalage val
+                res(1, (i-4)/7 + 2) = j-1; % i-4 pour enelever les 3 val de la garde puis + 2 pour index matlab et dï¿½calage val
                 res_ele(1, (i-4)/7 + 2) = 1;
             end
 
@@ -57,7 +57,7 @@ function traduction_code(profil_binarise)
     for i=51:7:92
         for j=1:10
             if (Ele_A(j, :) == profil_binarise(1, (i:i+6)))
-                res(1, (i+5)/7) = j-1; % i+ la garde de 5 divisé par 7
+                res(1, (i+5)/7) = j-1; % i+ la garde de 5 divisï¿½ par 7
                 res_ele(1, (i+5)/7) = 1;
             end
 
@@ -78,13 +78,4 @@ function traduction_code(profil_binarise)
            res(1,1) = i-1;
        end
     end
-
-<<<<<<< HEAD
-    res;
-
-
-=======
-    disp(res)
->>>>>>> a4fd84a8103b867f475f7af802f52296554fe2dc
-
 end

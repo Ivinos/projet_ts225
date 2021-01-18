@@ -3,14 +3,8 @@ close all;
 clc;
 %% ZEBARTI
 
-
-<<<<<<< HEAD
-img = double(imread('code_barre_jus3.jpg'));
-[width height]=size(img);
-=======
 img = double(imread('code_barre_jus.jpg'));
-[width, height]=size(img);
->>>>>>> a4fd84a8103b867f475f7af802f52296554fe2dc
+[width height]=size(img);
 
 img_bw = (img(:,:,1) + img(:,:,2) + img(:,:,3))/3;
 
@@ -19,8 +13,7 @@ imshow(uint8(img_bw))
 %[X, Y] = ginput(2);
 
 seuil=otsu(img_bw);
-
-D=region(img_bw,2,14);
+D=region(gradient(img_bw),2,14);
 seuil_binarisation = max(max(D))*0.99;
 Dbin= D>seuil_binarisation;
 
@@ -47,7 +40,7 @@ profil_tronque=troncage_profil(profil,seuil);
 profil_binarise=profil_tronque>seuil*255;
 affichage_profil(img_bw,profil,profil_tronque,seuil,Dlabel,X,Y);
 
-%% Extraction de la deuxième signature
+%% Extraction de la deuxiï¿½me signature
 
 index_zeros = find(~profil_binarise);
 index_premiere_val = index_zeros(1);
@@ -55,10 +48,10 @@ index_derniere_val = index_zeros(end);
 
 disp(M(index_derniere_val, 1))
 
-X_ = [M(index_premiere_val, 1)+2, M(index_derniere_val, 1)]; % !!!!!! le "+2" est un test mais wola c'est ça
+X_ = [M(index_premiere_val, 1)+2, M(index_derniere_val, 1)]; % !!!!!! le "+2" est un test mais wola c'est ï¿½a
 Y_ = [M(index_premiere_val, 2)-2, M(index_derniere_val, 2)]; % !!!!! pareil le -2 est douteux mais c'est pour centrer
 
-L = 95; % Points à extraire
+L = 95; % Points ï¿½ extraire
 
 M = zeros(L, 2);
 u = 0:L-1;
@@ -73,7 +66,7 @@ end
 
 %figure('Name', 't'), plot(profil2);
 
-% On réutilise le même seuil
+% On rï¿½utilise le mï¿½me seuil
 profil_binarise2(profil2 > seuil) = 1;
 profil_binarise2(profil2 <= seuil) = 0;
 
@@ -85,7 +78,7 @@ end
 
 img_verif = imresize(img_verif, 3);
 
-figure('Name', 'Résultat (WIP)'), imshow(img_verif);
+figure('Name', 'Rï¿½sultat (WIP)'), imshow(img_verif);
 
 figure;
 imshow(uint8(img_bw));
@@ -93,7 +86,7 @@ hold on;
 scatter(M(:,1), M(:,2));
 hold off;
 
-%% Décodage
+%% Dï¿½codage
 
 traduction_code(profil_binarise2)
 
