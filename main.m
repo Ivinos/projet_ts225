@@ -19,6 +19,7 @@ Dbin= D>seuil_binarisation;
 
 image_bin=Dbin.*img_bw;
 Dlabel=label(Dbin);
+figure,imshow((1-Dlabel).*img_bw);
 [X, Y]=orientation_forme(Dlabel);
 
 segment_len = sqrt((X(1) - X(2))^2 + (Y(1) - Y(2))^2); % Distance en pixel
@@ -35,7 +36,7 @@ M(:, 2) = floor(Y(1) + (u/(U-1))*(Y(2) - Y(1)));
 for i=1:length(M)
    profil(i)=img_bw(M(i,2),M(i,1)); 
 end
-
+length(profil)
 profil_tronque=troncage_profil(profil,seuil);
 profil_binarise=profil_tronque>seuil*255;
 affichage_profil(img_bw,profil,profil_tronque,seuil,Dlabel,X,Y);
